@@ -1,7 +1,7 @@
 {
   "name": "wayf-cloud",
   "version": "1.0.0",
-  "description": "Javascript Client for the WAYF Cloud",
+  "description": "Node.js client for the WAYF Cloud",
   "main": "index.js",
   "scripts": {
     "test": "mocha --harmony"
@@ -24,7 +24,6 @@
     "request-promise-native": "^1.0.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "chai": "^4.0.2",
     "mocha": "^3.4.2"
   }
