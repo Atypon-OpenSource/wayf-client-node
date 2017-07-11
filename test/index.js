@@ -1,7 +1,7 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const WayfClient = require('../lib');
+const WAYF = require('../lib');
 const uuidv4 = require('uuid/v4');
 const API_KEY = "test-key";
 
@@ -11,30 +11,67 @@ const API_KEY = "test-key";
 //   -H "Content-Type: application/json" \
 //   -d '{"name":"Awesome Publisher","code":"GTHB", "contact":{"firstName":"john","lastName":"doe", "email":"john.doe@awesomepublisher.com","phoneNumber":"15619237018"}}'
 
-const wc = new WayfClient('b3ff5c14-07ce-42fe-8ecd-89c91737b58a');
+const wc = new WAYF.client('b3ff5c14-07ce-42fe-8ecd-89c91737b58a');
 
 const WAYF_LOCAL = uuidv4();
 
 
 describe('Create IdP Entity', () => {
     it('for SAML should return SAML Entity Object', async () => {
-      let samlEntity = new wc.samlEntity("University of X","sample-saml-entity-id","sample-saml-federation-id");
+      let samlEntity = new WAYF.samlEntity("University of X","sample-saml-entity-id","sample-saml-federation-id");
       expect(samlEntity).to.deep.equal(create_saml_entity_request_body);
     });
+
+    it('for SAML should fail if entity ID is not provided', async () => {
+      try {
+        let samlEntity = new WAYF.samlEntity("University of X");
+      }
+      catch (err) {
+        expect(err).to.be.an('error');;
+      }
+    });
+
     it('for Open Athens should return Open Athens Entity Object', async () => {
-      let oaEntity = new wc.openAthensEntity("University of Y","sample-oa-entity-id","sample-oa-organization-id","sample-oa-scope");
+      let oaEntity = new WAYF.openAthensEntity("University of Y","sample-oa-entity-id","sample-oa-organization-id","sample-oa-scope");
       expect(oaEntity).to.deep.equal(create_oa_entity_request_body);
     });
+
+    it('for Open Athens should fail if an Entity ID is missing', async () => {
+      try {
+        let oaEntity = new WAYF.openAthensEntity("University of Y");
+      }
+      catch (err) {
+        expect(err).to.be.an('error');;
+      }
+    });
+
+    it('for Open Athens should fail if an Organization ID is missing', async () => {
+      try {
+        let oaEntity = new WAYF.openAthensEntity("University of Y","sample-oa-entity-id");
+      }
+      catch (err) {
+        expect(err).to.be.an('error');;
+      }
+    });
+
     it('for OAuth should return OAuth Entity Object', async () => {
-      let oAuthEntity = new wc.oAuthEntity("ORCID");
+      let oAuthEntity = new WAYF.oAuthEntity("ORCID");
       expect(oAuthEntity).to.deep.equal(create_oauth_entity_request_body);
+    });
+    it('for OAuth should fail if the provider is unknown', async () => {
+      try {
+        let oAuthEntity = new WAYF.oAuthEntity("OTHER");
+      }
+      catch (err) {
+        expect(err).to.be.an('error');;
+      }
     });
 });
 
 describe('Device Creation', () => {
     it('should return an empty device', async () => {
       var device = await wc.create(WAYF_LOCAL);
-      expect(device.id).to.equal(WAYF_LOCAL);
+      expect(device).to.be.undefined;
     });
 });
 
@@ -44,6 +81,29 @@ describe('Sharing an IdP for a device', function() {
       expect(idp).to.deep.equal(create_saml_entity_request_body);
     });
 });
+
+
+// [
+//  {
+//  "frequency": 20,
+//   "last-used": "date",
+//  "entity": {
+//   "id": 1,
+//   "type":"saml",
+//   "entityID": "https://saml.org"
+//  }
+//  },
+//  {
+//  "frequency": 5,
+//  "last-used": <date>,
+//   "entity": {
+//  "id": 2,
+//   "type":"oa",
+//  "entityID": "https://saml.org",
+//  "scope": "123doc.com",
+//  "organizationID": "5762748"
+//  }
+//  ]
 
 describe('Device history discovery', () => {
     it('should return an array of IdPs', async () => {

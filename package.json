@@ -7,16 +7,15 @@
     "test": "mocha --harmony"
   },
   "keywords": [
-    "WAYF",
-    "Cloud"
+    "WAYF Cloud"
   ],
   "author": "Atypon Systems, Inc.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Atypon-OpenSource/wayf-client-js.git"
+    "url": "https://github.com/Atypon-OpenSource/wayf-client-node.git"
   },
   "bugs": {
-    "url": "http://github.com/Atypon-OpenSource/wayf-client-js/issues"
+    "url": "http://github.com/Atypon-OpenSource/wayf-client-node/issues"
   },
   "license": "Apache-2.0",
   "dependencies": {

@@ -10,10 +10,10 @@ It wraps the WAYF Cloud [REST API](https://wayf-cloud.readme.io/v1/reference) in
 ### Connect to the WAYF Cloud
 
 ```js
-const WayfClient = require('./lib');
+const Wayf = require('./lib');
 
 // connect using an API Key
-const wc = new WayfClient(API_KEY,url);
+const wc = new Wayf.client(API_KEY,url);
 
 ```
 
@@ -31,11 +31,11 @@ var device = await wc.create(wayf-local);
 ```js
 
 // SAML/Shibboleth IdP
-let idp = new wc.samlEntity("University of X","sample-saml-entity-id","sample-saml-federation-id");
+let idp = new Wayf.samlEntity("University of X","sample-saml-entity-id","sample-saml-federation-id");
 // Open Athens IdP
-let idp = new wc.openAthensEntity("University of Y","sample-oa-entity-id","sample-oa-organization-id","sample-oa-scope");
+let idp = new Wayf.openAthensEntity("University of Y","sample-oa-entity-id","sample-oa-organization-id","sample-oa-scope");
 // idp IdP Object
-let samlEntity = new wc.oAuthEntity("ORCID");
+let samlEntity = new Wayf.oAuthEntity("ORCID");
 
 // save the IdP data to the WAYF Cloud
 var response = await wc.share(WAYF_LOCAL, idp);
@@ -48,29 +48,29 @@ var response = await wc.share(WAYF_LOCAL, idp);
 ```js
 
 let history = await wc.discover(wayf-local);
-// [ 
-//  { 
-//    "frequency": 20, 
-//    "last-used": "date", 
-//    "entity": { 
-//      "id": 1, 
-//      "type":"saml", 
+// [
+//  {
+//    "frequency": 20,
+//    "last-used": "date",
+//    "entity": {
+//      "id": 1,
+//      "type":"saml",
 //      "entityID": "https://example-entity.saml.org"
-//    } 
-//  }, 
-//  { 
-//    "frequency": 5, 
-//    "last-used": <date>, 
-//    "entity": { 
-//      "id": 2, 
-//      "type":"oa", 
+//    }
+//  },
+//  {
+//    "frequency": 5,
+//    "last-used": <date>,
+//    "entity": {
+//      "id": 2,
+//      "type":"oa",
 //      "entityID": "https://example-entity.oa.org",
 //      "scope": "123doc.com",
 //      "organizationID": "5762748"
-//     } 
+//     }
 //   },
-//   { 
-//     "type":"oauth", 
+//   {
+//     "type":"oauth",
 //     "provider": "ORCID",
 //   }
 // ]
