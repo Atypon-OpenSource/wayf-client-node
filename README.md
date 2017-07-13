@@ -23,8 +23,8 @@ const wc = new Wayf.client(API_KEY,url);
 const uuidv4 = require('uuid/v4');
 
 
-let wayf-local = uuidv4();
-var device = await wc.create(wayf-local);
+let wayfLocal = uuidv4();
+var device = await wc.create(wayfLocal);
 ```
 
 ### Save data to the WAYF Cloud
@@ -47,7 +47,7 @@ var response = await wc.share(WAYF_LOCAL, idp);
 
 ```js
 
-let history = await wc.discover(wayf-local);
+let history = await wc.discover(wayfLocal);
 // [
 //  {
 //    "frequency": 20,
