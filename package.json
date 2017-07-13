@@ -1,0 +1,29 @@
+{
+  "name": "wayf-cloud",
+  "version": "1.0.0",
+  "description": "Node.js client for the WAYF Cloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --harmony"
+  },
+  "keywords": [
+    "WAYF Cloud"
+  ],
+  "author": "Atypon Systems, Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Atypon-OpenSource/wayf-client-node.git"
+  },
+  "bugs": {
+    "url": "http://github.com/Atypon-OpenSource/wayf-client-node/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
