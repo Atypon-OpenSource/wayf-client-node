@@ -10,7 +10,7 @@ It wraps the WAYF Cloud [REST API](https://wayf-cloud.readme.io/v1/reference) in
 ### Connect to the WAYF Cloud
 
 ```js
-const Wayf = require('./lib');
+const Wayf = require('wayf-cloud');
 
 // connect using an API Key
 const wc = new Wayf.client(API_KEY,url);
