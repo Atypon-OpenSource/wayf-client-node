@@ -20,10 +20,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "request": "^2.86.0",
-    "request-promise-native": "^1.0.4"
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
